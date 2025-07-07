@@ -8,6 +8,8 @@ a = fdat.(1);
 tempstore = [];
 i = 1;
 j = 1;
+
+% data digestion
 while i <= numel(a)
     pogo = split(string(cell2mat(a(i))));
     if numel(pogo) == 4
@@ -40,19 +42,48 @@ while k < numel(tempstore(:,2))
     k = k + 1;
 end
 
-
-vcond = input("input velocity table position (integer value): ");
-n = 1;
-plotstore = [];
-
-while n <= numel(datreformat(:,1))
-    plotstore(n,:) = [datreformat{n,1} datreformat{n,2}(vcond,2)];
-    n = n + 1;
+% understand smallest double length in the set
+u = 1;
+poscount = numel(datreformat{1,2}(:,1));
+hopscotch = size(datreformat);
+while u < hopscotch(1,1)
+    u = u + 1;
+    if poscount > numel(datreformat{u,2}(:,1))
+        poscount = numel(datreformat{u,2}(:,1));
+    end
 end
 
-plot(plotstore(:,1),plotstore(:,2))
-guh = num2str(datreformat{1,2}(vcond,1));
-walnut = strcat("lifting force rpm relation for ", guh," mph condition");
-title(walnut)
-ylabel("lifting force, lbf")
-xlabel("prop rpm")
+% graph pretty stuff setup
+newcolors = jet(poscount);
+colororder(newcolors)
+hold on
+zlabel("lifting force, lbf")
+ylabel("incoming airstream velocity, mph")
+xlabel("prop rotational speed, rpm")
+
+% plot from data
+g = 1;
+n = 1;
+plotstore = [];
+while g < poscount
+    plotstore = [];
+    while n <= numel(datreformat(:,1))
+        plotstore(n,:) = [datreformat{n,1} datreformat{n,2}(g,2) datreformat{1,2}(g,1)];
+       n = n + 1;
+    end
+    n = 1;
+    plot3(plotstore(:,1),plotstore(:,3),plotstore(:,2))
+    g = g + 1;
+end
+
+%output currently garbles datastructure on read after export,
+% either need to rethink how I am structuing this fundementally to a more
+% exportable structure (3D array if exportable?)
+
+%outdir = input("specify output directory: ", "s")
+%outputname = split(fpath,"/");
+%outputname = split(outputname{numel(outputname)},".");
+%outputname = outputname{1};
+%outputname = strcat(outdir,"/",outputname,".dat")
+%writetable(datreformat,outputname)
+ 
