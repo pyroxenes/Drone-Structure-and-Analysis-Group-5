@@ -7,7 +7,7 @@
 - Anthony Santos
 ___
 ### Project Description
-The purpose of this project is to optimize drone delivery by establishing a design that can carry heavier packages, up to 70 lbs. Our objective is to minimize the weight of the airframe
+The purpose of this project is to optimize drone delivery by establishing a design that can carry heavier packages, up to 70 lbs. Our objective is to minimize the weight of the airframe.
 
 Some of the concepts and tools used were:
 - CAD modeling (Fusion360)
@@ -24,10 +24,16 @@ ___
 ### Running this Project
 1. **Clone the repository:**
 
-2. **Open The Matlab Livescript Model:**
-  
+2. **Open The Matlab Livescript:**
+  MainProjectFile.mlx
 3. **Run the matlab live script:**
 
+#### File Descriptions   
+   **MainProjectFile.mlx**: Main Livescript file
+   **PER3_27x13E.dat**: propellor performance data
+   **armvprop.m**: Plots minimum arm length vs propellor diameter
+   **propplot.m**: Plots propellor performance data
+   **thrustvproplen.m**: Plots thrust performance for motor with various propellor lengths
 ___
 
 
