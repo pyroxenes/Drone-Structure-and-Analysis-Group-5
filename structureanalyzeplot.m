@@ -1,1 +1,0 @@
-%takes csv output of propdatadigester, and usersetup 
