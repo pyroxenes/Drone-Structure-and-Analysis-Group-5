@@ -34,7 +34,7 @@ ___
 ├── src
 │   ├── MainProjectFile.mlx
 │   ├── propplot.m
-│   ├── thrustvproplen.m*
+│   ├── thrustvproplen.m
 │   ├── armvprop.m
 │   ├── arm.m
 │   ├── shearbend.m
